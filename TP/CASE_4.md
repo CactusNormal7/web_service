@@ -14,12 +14,15 @@ app.post('/v1/donations', async (req, res) => {
 ```
 
 ## Réponses
-1. 
+1. À chaque nouvel essai le serveur recrée un don et redébite, il ne sait pas que c'est la même demande.
 
-2. 
+2. Léa a payé 60 € au lieu de 20 €, elle doit demander à se faire rembourser.
 
-3. 
+3. Règle 4 : « Rejouer une requête ne rejoue pas l'effet. »
 
-4. 
+4.
+- L'appli crée une clé unique et l'envoie dans l'en-tête `Idempotency-Key`, la même à chaque essai.
+- Au premier envoi le serveur ne connaît pas la clé, il crée le don, débite et garde la clé avec la réponse.
+- Au deuxième envoi il connaît déjà la clé, il renvoie juste la même réponse sans rien refaire.
 
-5. 
+5. Le don est enregistré mais l'argent n'est pas débité, donc la cagnotte affiche un don qui n'existe pas.
