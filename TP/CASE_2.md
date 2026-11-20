@@ -13,12 +13,22 @@ Content-Type: application/json
 ```
 
 ## Réponses
-1. 
+1. L'API renvoie 200 OK alors que la réservation a échoué.
 
-2. 
+2. La seconde personne pense avoir sa place alors qu'elle n'a rien / deux personnes se retrouvent devant la même place F7 le jour de la séance
 
-3. 
+3. Règle 2 : « Le code HTTP dit la vérité. »
 
-4. 
+4.
+```http
+HTTP/1.1 409 Conflict
+Content-Type: application/problem+json
 
-5. 
+{
+  "response": "Place déjà réservée",
+  "status": 409,
+  "detail": "La place F7 est déjà réservée pour la séance 12."
+}
+```
+
+5. E42 voulait dire « place déjà prise ». Seuls les développeurs le savent, voire uniquement le développeur responsable de ce message.
