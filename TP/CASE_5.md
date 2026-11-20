@@ -20,12 +20,19 @@ HTTP/1.1 200 OK
 ```
 
 ## Réponses
-1. 
+1. L'API renvoie toute la fiche du conducteur alors que l'écran a juste besoin du prénom et de la note.
 
-2. 
+2. N'importe quel passager peut récupérer le téléphone, l'adresse, l'IBAN et même le mot de passe haché du conducteur.
 
-3. 
+3. Règle 5 : « Ne renvoyer que ce que l'écran affiche. »
 
-4. 
+4.
 
-5. 
+| Visible par tous | Réservé au conducteur | Ne sort jamais |
+|------------------|-----------------------|----------------|
+| id               | phone                 | passwordHash   |
+| firstName        | homeAddress           |                |
+| rating           | iban                  |                |
+|                  | licenseNumber         |                |
+
+5. Les données passent quand même sur le réseau, n'importe qui peut les voir avec les outils du navigateur ou un curl.
