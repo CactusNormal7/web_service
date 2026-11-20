@@ -11,18 +11,19 @@ GET   /getStudentNotes?student=4&delete=true
 ```
 
 ## Réponses
-1. Le nommage des routes n'est pas linéaire / cohérent et mettent l'action dans l'url
+1. Le nommage des routes n'est pas cohérent et met l'action dans l'URL au lieu du verbe HTTP.
 
-2. 
+2. Sécurité : Des actions peuvent mener à des résultats inattendus, s'il y a une différence entre l'action et le verbe.
 
-3. 
+3. Règle 1 : « Des noms dans l'URL, l'action dans le verbe HTTP. »
 
-4. 
-
+4.
+```http
 GET     /students
 DELETE  /students/4
 GET     /notes
 PATCH   /notes/{id}
 GET     /students/4/notes
+```
 
-5. La dernière route supprime avec un get, et a le paramètre qui décide de la suppression à true par défaut, donc si quelqu'un souhaite juste récupérer les notes des étudiants, et ne spécifie aucun paramètre, ça va supprimer des données non intentionnellement.
+5. La dernière route supprime avec un GET : quelqu'un qui veut juste récupérer les notes d'un étudiant peut supprimer des données sans le vouloir.
