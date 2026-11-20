@@ -10,12 +10,23 @@ app.get('/v1/products', async (req, res) => {
 ```
 
 ## Réponses
-1. 
+1. La route récupère les 80 000 produits à chaque fois alors que la page en affiche que 12.
 
-2. 
+2. Plus il y a de produits, plus la page est lente, et à un moment le serveur ne tient plus.
 
-3. 
+3. Règle 3 : « Jamais de liste sans limite. »
 
-4. 
+4.
+```http
+GET /v1/products?limit=12
 
-5. 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "data": [ ...les 12 produits... ],
+  "nextCursor": "abc123"
+}
+```
+
+5. L'API plafonne à son maximum (par exemple 100), elle n'en renvoie jamais plus.
